@@ -22,7 +22,7 @@ const loadScript = (fileName) => new Promise((resolve, reject) => {
 
 const addProjectCommands = async () => {
 	const response = await fetch('/api/projects');
-	if (!response.ok) throw new Error('Project API unavailable.');
+	if (!response.ok) throw new Error(`API returned HTTP ${response.status}.`);
 	const { projects } = await response.json();
 	const projectIds = [];
 

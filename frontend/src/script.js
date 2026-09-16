@@ -53,10 +53,24 @@ const projectList = document.querySelector('#project-list');
 const projectCount = document.querySelector('#project-count');
 let activePrompt = terminalPrompt;
 
+const fetchApi = async (path) => {
+	const controller = new AbortController();
+	const timeout = window.setTimeout(() => controller.abort(), 8000);
+	try {
+		const response = await fetch(path, { signal: controller.signal });
+		if (!response.ok) throw new Error(`API returned HTTP ${response.status}.`);
+		return response;
+	} catch (error) {
+		if (error.name === 'AbortError') throw new Error('API request timed out. Check the Nginx /api/ proxy.');
+		throw new Error(`Could not reach the API. Check the Nginx /api/ proxy. ${error.message}`);
+	} finally {
+		window.clearTimeout(timeout);
+	}
+};
+
 const loadProjects = async () => {
 	try {
-		const response = await fetch('/api/projects');
-		if (!response.ok) throw new Error('Project API unavailable.');
+		const response = await fetchApi('/api/projects');
 		const { projects } = await response.json();
 		projectCount.textContent = `${String(projects.length).padStart(2, '0')} entries`;
 		projectList.replaceChildren(...projects.map((project) => {

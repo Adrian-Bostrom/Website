@@ -30,7 +30,7 @@ const loadProject = async () => {
 	try {
 		if (!slug) throw new Error('No project was selected.');
 		const response = await fetch(`/api/projects/${encodeURIComponent(slug)}`);
-		if (!response.ok) throw new Error('Project API unavailable.');
+		if (!response.ok) throw new Error(`API returned HTTP ${response.status}.`);
 		const project = await response.json();
 		const readmeLines = project.readme.trim().split('\n');
 		const title = readmeLines.shift().trim();

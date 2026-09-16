@@ -66,3 +66,14 @@ server {
 - `GET /api/projects/:slug` returns a project, its content, and its logs.
 
 The frontend and backend are intentionally separate so Cloudflare Tunnel only needs to expose the Nginx port 8080.
+
+## External connectivity check
+
+From a device outside the tablet, open these URLs using the same public hostname:
+
+```text
+https://your-public-hostname.example/api/health
+https://your-public-hostname.example/api/projects
+```
+
+The first should return `{"status":"ok"}` and the second should return the project list. If `/api/health` fails, the issue is the Cloudflare Tunnel or Nginx proxy, not the frontend. The tunnel should target Nginx on `http://localhost:8080`, never the Node API on port 3000.
