@@ -1,0 +1,18 @@
+{
+  "name": "adrian-dev-log",
+  "version": "1.0.0",
+  "private": true,
+  "description": "Self-hosted development log website",
+  "type": "module",
+  "scripts": {
+    "build": "node scripts/build-frontend.mjs",
+    "start": "node backend/server.js",
+    "dev": "node --watch backend/server.js"
+  },
+  "engines": {
+    "node": ">=22.5.0"
+  },
+  "dependencies": {
+    "express": "^5.1.0"
+  }
+}

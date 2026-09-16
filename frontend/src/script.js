@@ -49,7 +49,35 @@ const contactBackdrop = document.querySelector('#contact-terminal-backdrop');
 const contactCommand = document.querySelector('#contact-command');
 const contactResponse = document.querySelector('#contact-response');
 const closeContact = document.querySelector('#close-contact');
+const projectList = document.querySelector('#project-list');
+const projectCount = document.querySelector('#project-count');
 let activePrompt = terminalPrompt;
+
+const loadProjects = async () => {
+	try {
+		const response = await fetch('/api/projects');
+		if (!response.ok) throw new Error('Project API unavailable.');
+		const { projects } = await response.json();
+		projectCount.textContent = `${String(projects.length).padStart(2, '0')} entries`;
+		projectList.replaceChildren(...projects.map((project) => {
+			const link = document.createElement('a');
+			link.className = 'project';
+			link.href = `project.html?slug=${encodeURIComponent(project.slug)}`;
+			const number = document.createElement('span');
+			number.className = 'project-number';
+			number.textContent = `${String(project.number).padStart(2, '0')} / ${project.status.toUpperCase()}`;
+			const title = document.createElement('h3');
+			title.textContent = project.title;
+			const summary = document.createElement('p');
+			summary.textContent = project.summary;
+			link.append(number, title, summary);
+			return link;
+		}));
+	} catch (error) {
+		projectCount.textContent = 'unavailable';
+		projectList.textContent = error.message;
+	}
+};
 
 const wait = (duration) => new Promise((resolve) => window.setTimeout(resolve, duration));
 const typeText = (element, text, speed = 24) => new Promise((resolve) => {
@@ -227,6 +255,8 @@ const initializeTerminal = () => {
 	runBootSequence();
 	renderCommands(window.devLogInitialCommands);
 };
+
+loadProjects();
 
 if (window.devLogCommandsReady) {
 	initializeTerminal();

@@ -3,23 +3,23 @@
 <head>
 	<meta charset="utf-8">
 	<meta name="viewport" content="width=device-width, initial-scale=1">
-	<meta name="description" content="StudyZone by Adrian Boström and seven collaborators.">
-	<title>A_B / StudyZone</title>
+	<meta name="description" content="Adrian Boström's development log project.">
+	<title>A_B / Project</title>
 	<link rel="icon" type="image/png" href="A_B.png">
 	<link rel="stylesheet" href="style.css">
 	<link rel="stylesheet" href="project-page.css">
 </head>
 <body class="project-page">
 	<div class="wrap">
-		<header><a class="logo" href="index.html">A_B / StudyZone</a><nav aria-label="Project navigation"><a href="index.html#projects">all projects</a><button class="nav-terminal-button" type="button" id="contact-button">contact</button></nav></header>
+		<header><a class="logo" href="index.html">A_B / dev log</a><nav aria-label="Project navigation"><a href="index.html#projects">all projects</a><button class="nav-terminal-button" type="button" id="contact-button">contact</button></nav></header>
 		<main>
-			<p class="eyebrow">02 / live</p>
+			<p class="eyebrow" id="project-status">Loading project...</p>
 			<h1 id="project-title">Loading project...</h1>
 			<p class="project-intro" id="project-intro">Loading project description...</p>
-			<section class="project-file"><div class="project-file-header"><span>~/projects/02-StudyZone/content.js</span><span>readme</span></div><pre id="readme-content">Loading content.js...</pre></section>
-			<section class="project-file"><div class="project-file-header"><span>~/projects/02-StudyZone/content.js</span><span>details</span></div><pre id="details-content">Loading content.js...</pre></section>
+			<section class="project-file"><div class="project-file-header"><span id="readme-path">~/projects/readme.txt</span><span>readme</span></div><pre id="readme-content">Loading readme.txt...</pre></section>
+			<section class="project-file"><div class="project-file-header"><span id="details-path">~/projects/details.txt</span><span>details</span></div><pre id="details-content">Loading details.txt...</pre></section>
 			<section class="dev-log" aria-labelledby="dev-log-title"><h2 id="dev-log-title">Development log</h2><div class="dev-log-list" id="dev-log-list">Loading entries...</div></section>
-			<a class="source-link" href="https://github.com/Adrian-Bostrom/StudyZone" target="_blank" rel="noreferrer">view source code on GitHub &nearr;</a>
+			<a class="source-link" id="source-link" href="#" target="_blank" rel="noreferrer" hidden>view source code on GitHub &nearr;</a>
 		</main>
 		<footer><span>© 2026 All Rights Reserved</span><a href="index.html">return to dev log</a></footer>
 	</div>
@@ -29,7 +29,6 @@
 			<div class="terminal-body"><p id="contact-command"></p><p class="dim" id="contact-response"></p><button class="detail-button" type="button" id="close-contact">[ close terminal ]</button></div>
 		</section>
 	</div>
-	<script>document.body.dataset.logPath = 'projects/02-StudyZone'; document.body.dataset.projectPath = 'projects/02-StudyZone';</script>
 	<script src="project-page.js"></script>
 	<script src="project-contact.js"></script>
 </body>
