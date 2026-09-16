@@ -1,0 +1,53 @@
+<!doctype html>
+<html lang="en">
+<head>
+	<meta charset="utf-8">
+	<meta name="viewport" content="width=device-width, initial-scale=1">
+	<meta name="description" content="Adrian Boström's development log.">
+	<title>Adrian Boström / Dev Log</title>
+	<link rel="icon" type="image/png" href="A_B.png">
+	<link rel="stylesheet" href="style.css">
+</head>
+<body>
+	<section class="terminal-intro" aria-label="Welcome terminal">
+		<div class="terminal-layout">
+		<div class="terminal" role="dialog" aria-labelledby="welcome-title">
+			<div class="terminal-bar"><span class="dot" data-dot-index="0" role="button" tabindex="0" aria-label="Close terminal"></span><span class="dot" data-dot-index="1" role="button" tabindex="0" aria-label="Minimize terminal"></span><span class="dot" data-dot-index="2" role="button" tabindex="0" aria-label="Maximize terminal"></span><span class="terminal-name">visitor@adrian:~</span></div>
+			<div class="terminal-body">
+				<p class="dim boot-line" data-boot-text="loading questionable ideas... done"></p>
+				<p class="big-message" id="welcome-title"><span id="welcome-text"></span><span class="cursor" aria-hidden="true"></span></p>
+				<p class="boot-line" data-boot-text="Hi. I am Adrian Boström."></p>
+				<p class="dim boot-line" data-boot-text="You have entered my tiny corner of the internet."></p>
+				<p class="boot-line terminal-prompt" id="terminal-prompt"></p>
+				<div class="terminal-output" id="terminal-output" aria-live="polite" aria-label="Terminal output"></div>
+				<div class="terminal-actions" aria-label="Terminal commands">
+				</div>
+			</div>
+		</div>
+			<div class="detail-terminals" id="detail-terminals" aria-label="Project terminals"></div>
+		</div>
+	</section>
+	<div class="site">
+		<div class="wrap">
+			<header><a class="logo" href="index.html">A_B / dev log</a><nav aria-label="Main navigation"><a href="#projects">projects</a><button class="nav-terminal-button" type="button" id="contact-button">contact</button></nav></header>
+			<main>
+				<section class="hero" aria-labelledby="site-title"><div class="eyebrow">Independent developer / online since who knows</div><h1 id="site-title">Adrian<br>Bostr&ouml;m</h1><p>A running list of things I am building, breaking, and learning from.</p></section>
+				<section id="projects" tabindex="-1" aria-labelledby="projects-title"><div class="section-title"><h2 id="projects-title">Selected projects</h2><span>03 entries</span></div><div class="projects">
+					<a class="project" id="project-one" href="project-one.html"><span class="project-number">01 / IN PROGRESS</span><h3>Dev website</h3><p>An interactive development log built around a playful terminal interface.</p></a>
+					<a class="project" id="project-two" href="project-two.html"><span class="project-number">02 / LIVE</span><h3>StudyZone</h3><p>An AI-powered study planner built from course information in Canvas.</p></a>
+					<a class="project" id="project-three" href="project-three.html"><span class="project-number">03 / NOTES</span><h3>Project Three</h3><p>A short description that makes people want to look closer.</p></a>
+				</div></section>
+			</main>
+			<footer id="contact"><span>© 2026 All Rights Reserved</span><a href="mailto:adrian@familybostrom.se">adrian@familybostrom.se</a></footer>
+		</div>
+	</div>
+	<div class="contact-terminal-backdrop" id="contact-terminal-backdrop" hidden>
+		<section class="contact-terminal" role="dialog" aria-modal="true" aria-labelledby="contact-terminal-title">
+			<div class="terminal-bar"><span class="dot" data-dot-index="0" role="button" tabindex="0" aria-label="Close contact terminal"></span><span class="dot" data-dot-index="1" role="button" tabindex="0" aria-label="Minimize contact terminal"></span><span class="dot" data-dot-index="2" role="button" tabindex="0" aria-label="Maximize contact terminal"></span><span class="terminal-name" id="contact-terminal-title">contact@adrian:~</span></div>
+			<div class="terminal-body"><p id="contact-command"></p><p class="dim" id="contact-response"></p><button class="detail-button" type="button" id="close-contact">[ close terminal ]</button></div>
+		</section>
+	</div>
+	<script src="commands/index.js"></script>
+	<script src="script.js"></script>
+</body>
+</html>

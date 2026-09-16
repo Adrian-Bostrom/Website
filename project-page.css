@@ -1,0 +1,22 @@
+.project-page { min-height: 100vh; }
+.project-page main { padding: 70px 0 110px; }
+.project-page .eyebrow { margin: 0; }
+.project-page h1 { margin: 24px 0 30px; }
+.project-page .project-intro { max-width: 560px; color: var(--grey); line-height: 1.7; }
+.project-file { margin-top: 54px; border: 1px solid var(--line); }
+.project-file-header { display: flex; justify-content: space-between; gap: 20px; padding: 12px 16px; border-bottom: 1px solid var(--line); color: var(--grey); font-size: .78rem; }
+.project-file pre { margin: 0; padding: 24px; color: var(--white); font: inherit; font-size: .9rem; line-height: 1.8; white-space: pre-wrap; }
+.project-page footer { margin-top: 80px; }
+.dev-log { margin-top: 70px; }
+.dev-log h2 { margin: 0 0 16px; font-size: 1rem; }
+.dev-log-list { border-top: 1px solid var(--line); }
+.dev-log-entry { display: grid; grid-template-columns: 140px 1fr; gap: 24px; padding: 18px 0; border-bottom: 1px solid var(--line); }
+.dev-log-entry time { color: var(--grey); font-size: .8rem; }
+.dev-log-entry p { margin: 0; color: var(--white); line-height: 1.7; white-space: pre-wrap; }
+.source-link { display: inline-block; margin-top: 28px; color: var(--grey); font-size: .8rem; text-underline-offset: 4px; }
+.source-link:hover { color: var(--white); }
+@media (max-width: 680px) {
+	.project-page main { padding: 48px 0 80px; }
+	.project-file-header { align-items: flex-start; flex-direction: column; gap: 5px; }
+	.dev-log-entry { grid-template-columns: 1fr; gap: 8px; }
+}
