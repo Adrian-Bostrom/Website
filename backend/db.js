@@ -94,7 +94,7 @@ if (projectCount === 0) {
 }
 
 export const listProjects = () => database.prepare(`
-  SELECT slug, title, number, status, summary, source_url AS sourceUrl
+  SELECT slug, title, number, status, summary, readme, details, source_url AS sourceUrl
   FROM projects
   ORDER BY number
 `).all();

@@ -67,6 +67,77 @@ server {
 
 The frontend and backend are intentionally separate so Cloudflare Tunnel only needs to expose the Nginx port 8080.
 
+## Termux deployment
+
+Termux does not use `sudo` or `systemctl`. Install the required packages once:
+
+```bash
+pkg update
+pkg install nodejs nginx rsync
+npm install
+```
+
+Build and deploy the frontend to a directory owned by your Termux user:
+
+```bash
+npm run build
+mkdir -p "$PREFIX/share/nginx/html"
+rsync -a --delete frontend/dist/ "$PREFIX/share/nginx/html/"
+```
+
+In `$PREFIX/etc/nginx/nginx.conf`, use the generated frontend directory as the server root. Replace the placeholder path with the output of `echo "$PREFIX/share/nginx/html"`:
+
+```nginx
+server {
+	listen 8080;
+	root /data/data/com.termux/files/usr/share/nginx/html;
+
+	location /api/ {
+		proxy_pass http://127.0.0.1:3000/;
+		proxy_set_header Host $host;
+		proxy_set_header X-Real-IP $remote_addr;
+	}
+
+	location / {
+		try_files $uri /index.html;
+	}
+}
+```
+
+Start the backend and Nginx in separate Termux sessions:
+
+```bash
+npm start
+```
+
+```bash
+nginx -t -c "$PREFIX/etc/nginx/nginx.conf"
+nginx -c "$PREFIX/etc/nginx/nginx.conf"
+```
+
+After a frontend update:
+
+```bash
+npm run build
+rsync -a --delete frontend/dist/ "$PREFIX/share/nginx/html/"
+nginx -s reload -c "$PREFIX/etc/nginx/nginx.conf"
+```
+
+Useful Termux checks:
+
+```bash
+curl http://127.0.0.1:3000/api/health
+curl http://127.0.0.1:8080/api/health
+curl http://127.0.0.1:8080/api/projects
+```
+
+To run the backend or Nginx after closing a Termux session, use `tmux`, `nohup`, or Termux:Boot. For example:
+
+```bash
+nohup npm start > "$HOME/dev-log-api.log" 2>&1 &
+nohup nginx -c "$PREFIX/etc/nginx/nginx.conf" > "$HOME/nginx.log" 2>&1 &
+```
+
 ## External connectivity check
 
 From a device outside the tablet, open these URLs using the same public hostname:
